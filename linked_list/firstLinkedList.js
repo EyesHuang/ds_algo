@@ -38,6 +38,7 @@ class LinkedList {
         }
 
         this.length = this.length + 1;
+
         return this;
     }
 }
