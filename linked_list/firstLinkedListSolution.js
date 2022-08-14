@@ -1,16 +1,4 @@
-// Create the below linked list:
-// myLinkedList = {
-//   head: {
-//     value: 10
-//     next: {
-//       value: 5
-//       next: {
-//         value: 16
-//         next: null
-//       }
-//     }
-//   }
-// };
+// add a method prepend() to the linked list that adds a node to the beginning of the list
 
 class LinkedList {
     constructor(value) {
@@ -31,15 +19,22 @@ class LinkedList {
         this.length++;
         return this;
     }
+    prepend(value) {
+        const newNode = {
+            value: value,
+            next: null
+        }
+        newNode.next = this.head;
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
 }
 
 let myLinkedList = new LinkedList(10);
-console.log(JSON.stringify(myLinkedList));
 myLinkedList.append(5);
 console.log(JSON.stringify(myLinkedList));
 myLinkedList.append(16);
 console.log(JSON.stringify(myLinkedList));
-myLinkedList.append(99);
-console.log(JSON.stringify(myLinkedList));
-myLinkedList.append(28);
+myLinkedList.prepend(1);
 console.log(JSON.stringify(myLinkedList));
