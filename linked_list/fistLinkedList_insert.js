@@ -42,6 +42,9 @@ class LinkedList {
         if (index === 0) {
             this.prepend(value);
             return this.printList();
+        } else if (index >= this.length) {
+            this.append(value);
+            return this.printList();
         }
 
         let pre = this.head;
@@ -53,8 +56,8 @@ class LinkedList {
             next: null
         }
         let aft = pre.next
-        newNode.next = aft
         pre.next = newNode
+        newNode.next = aft
         this.length++;
         return this.printList();
     }
@@ -68,3 +71,4 @@ console.log(myLinkedList.prepend(1));
 
 console.log(myLinkedList.insert(0, 30));
 console.log(myLinkedList.insert(2, 40));
+console.log(myLinkedList.insert(10, 6));
