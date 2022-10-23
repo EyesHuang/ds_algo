@@ -3,7 +3,7 @@ class DoublyLinkedList {
         this.head = {
             value: value,
             next: null,
-            previous: null
+            prev: null
         };
         this.tail = this.head;
         this.length = 1;
@@ -12,7 +12,7 @@ class DoublyLinkedList {
         const newNode = {
             value: value,
             next: null,
-            previous: this.tail
+            prev: this.tail
         }
         this.tail.next = newNode;
         this.tail = newNode;
@@ -23,10 +23,10 @@ class DoublyLinkedList {
         const newNode = {
             value: value,
             next: null,
-            previous: null
+            prev: null
         }
         newNode.next = this.head;
-        this.head.previous = newNode
+        this.head.prev = newNode
         this.head = newNode;
         this.length++;
         return this.printList();
@@ -45,7 +45,7 @@ class DoublyLinkedList {
         let currentNode = this.tail;
         while (currentNode != null) {
             array.push(currentNode.value);
-            currentNode = currentNode.previous;
+            currentNode = currentNode.prev;
         }
         return array;
     }
@@ -58,16 +58,19 @@ class DoublyLinkedList {
             return this.printList();
         }
 
-        let leadingNode = this.traverseToIndex(index);
         const newNode = {
             value: value,
             next: null,
-            previous: leadingNode
+            prev: null
         }
-        let holdingNode = leadingNode.next
-        holdingNode.previous = newNode
-        leadingNode.next = newNode
-        newNode.next = holdingNode
+        const leader = this.traverseToIndex(index);
+        const follower = leader.next;
+
+        newNode.prev = leader;
+        follower.previous = newNode
+        leader.next = newNode
+        newNode.next = follower
+
         this.length++;
         return this.printList();
     }
@@ -76,9 +79,9 @@ class DoublyLinkedList {
 
         if (index <= 0) {
             this.head = this.head.next;
-            this.head.previous = null;
+            this.head.prev = null;
         } else if (index >= this.length - 1) {
-            this.tail = this.tail.previous;
+            this.tail = this.tail.prev;
             this.tail.next = null;
         } else {
             leadingNode = this.traverseToIndex(index - 1);
