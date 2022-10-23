@@ -62,7 +62,7 @@ class LinkedList {
         if (index <= 0) {
             this.head = this.head.next;
         } else if (index >= this.length - 1) {
-            leadingNode = this.traverseToIndex(this.length - 1);
+            leadingNode = this.traverseToIndex(this.length - 2);
             leadingNode.next = null;
         } else {
             leadingNode = this.traverseToIndex(index - 1);
