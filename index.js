@@ -40,7 +40,7 @@ class DoublyLinkedList {
         }
         return array;
     }
-    printListReverse() {
+    reverse() {
         const array = [];
         let currentNode = this.tail;
         while (currentNode != null) {
@@ -105,6 +105,7 @@ class DoublyLinkedList {
 }
 
 let myLinkedList = new DoublyLinkedList(10);
+console.log(myLinkedList.reverse());
 console.log(myLinkedList.append(5));
 console.log(myLinkedList.append(16));
 
@@ -117,3 +118,5 @@ console.log(myLinkedList.insert(10, 6));
 console.log(myLinkedList.remove(2));
 console.log(myLinkedList.remove(5));
 console.log(myLinkedList.remove(-2));
+
+console.log(myLinkedList.reverse());
