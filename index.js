@@ -19,32 +19,34 @@ class Stack {
 
     //add a new item
     push(value) {
-        let node = new Node(value);
+        const newNode = new Node(value);
         if (this.length === 0) {
-            this.top = node;
-            this.bottom = node;
+            this.top = newNode;
+            this.bottom = newNode;
         } else {
-            let current = this.top;
-            for (let i = 0; i < this.length - 1; i++) {
-                current = current.next;
-            }
-            current.next = node;
-            this.bottom = node;
+            let holdingPoint = this.top;
+            this.top = newNode;
+            this.top.next = holdingPoint;
         }
         this.length++;
+
+        return this;
     }
 
     //remove the last item
     pop() {
-        let current = this.top;
-        for (let i = 0; i < this.length - 2; i++) {
-            current = current.next;
+        if (!this.top) {
+            return null;
         }
-        current.next = null;
-        this.bottom = current;
+
+        if (this.top === this.bottom) {
+            this.bottom = null;
+        }
+
+        this.top = this.top.next;
         this.length--;
+        return this;
     }
-    //isEmpty
 }
 
 const myStack = new Stack();
@@ -52,6 +54,10 @@ myStack.push("Discord");
 myStack.push("Udemy");
 myStack.push("google");
 console.log(JSON.stringify(myStack));
+
 console.log(JSON.stringify(myStack.peek()));
-myStack.pop();
-console.log(JSON.stringify(myStack));
+
+console.log(JSON.stringify(myStack.pop()));
+console.log(JSON.stringify(myStack.pop()));
+console.log(JSON.stringify(myStack.pop()));
+console.log(JSON.stringify(myStack.pop()));
